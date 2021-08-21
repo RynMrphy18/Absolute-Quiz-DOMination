@@ -2,7 +2,7 @@ var questions = [
     {
         title: "Inside which HTML element do we put JavaScript?",
         choices: ["<js>", "<script>", "<javascript>", "<div>"],
-        answer: "<script"
+        answer: "<script>"
     },
     {
         title: "Where is the correct place to insert a JavaScript?",
@@ -94,7 +94,8 @@ function askQuestion() {
     choicesEl.innerHTML = "";
 
     // loop choices
-    currentQuestion.choices(function(choice, i) {
+    for (currentQuestionIndex; currentQuestionIndex < questions.length; currentQuestionIndex++) {
+        for (currentQuestionIndex.answers; currentQuestionIndex.answers < questions.length; currentQuestionIndex.answers++) {
         // create button for each choice
         var choiceBtn = document.createElement("button");
         choiceBtn.setAttribute("class", "choice");
@@ -107,8 +108,8 @@ function askQuestion() {
 
         // add to page
         titleEl.appendChild(choiceBtn);
-
-    });
+        };
+    };
 }
 
 function questionClick() {
