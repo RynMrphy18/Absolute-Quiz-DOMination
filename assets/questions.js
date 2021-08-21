@@ -48,5 +48,5 @@ var questions = [
     title: "Which operator assigns a value to a variable?",
     choices: ["-","x","+","="],
     answer: "="
-},
+}
 ];
