@@ -42,7 +42,7 @@ var questions = [
     {
         title: "True or False: JavaScript is the same as Java",
         choices: ["True", "False"],
-        answer: "True"
+        answer: "False"
     },
     {
         title: "Which operator assigns a value to a variable?",
@@ -50,157 +50,67 @@ var questions = [
         answer: "="
     }
     ];
-    
-// defined global variables
-var questionsEl = document.querySelector("#questions");
-var timerEl = document.querySelector("#time");
-var choicesEl = document.querySelector("#submit");
-var submitBtn = document.querySelector("#submit");
-var startBtn = document.querySelector("#start");
-var initialsEl= document.querySelector("#initials");
-var feedbackEl = document.querySelector("#feedback");
 
-// quiz variables
-var currentQuestionIndex = 0;
-var time = questions.length * 15;
-var timerId;
+// numerical global variables    
+var score= 0;
+var currentQuestion = -1
+var timeLeft = 0;
+var timer;
 
-    
 function startQuiz() {
-    // puts away beginning screen
-    var startQuizEl = document.getElementById("start-quiz")
-    startQuizEl.setAttribute("class", "hide");
+// start timer upon button click
+  timeLeft = 75;
+  document.getElementById("time").innerHTML = timeLeft;
 
-    // reveals questions
-    questionsEl.removeAttribute("class");
+  timer = setInterval(function() {
+    timeLeft--;
+    document.getElementById("time").innerHTML = timeLeft
 
-    timerId = setInterval(clockTick, 1000);
-
-    timerEl.textContent = time;
-
-    askQuestion();
-    clockTick();
+    // end game when timer reaches 0
+    if (timeLeft <= 0) {
+        clearInterval(timer);
+        endGame();
+    }
+  }, 1000);
 }
 
-function askQuestion() {
-    // access question array
-    var currentQuestion = questions[currentQuestionIndex];
+function endGame() {
+    clearInterval(timer);
 
-    // change title to current question
-    var titleEl = document.getElementById("question-title");
-    titleEl.textContent = currentQuestion.title;
 
-    // clear old questions
-    choicesEl.innerHTML = "";
-
-    // loop choices
-    for (currentQuestionIndex; currentQuestionIndex < questions.length; currentQuestionIndex++) {
-        for (currentQuestionIndex.answers; currentQuestionIndex.answers < questions.length; currentQuestionIndex.answers++) {
-        // create button for each choice
-        var choiceBtn = document.createElement("button");
-        choiceBtn.setAttribute("class", "choice");
-        choiceBtn.setAttribute("value", choice);
-
-        choiceBtn.textContent = i + 1 + ". " + choice;
-
-        // event listener for buttons
-        choiceBtn.onclick = questionClick;
-
-        // add to page
-        titleEl.appendChild(choiceBtn);
-        };
-    };
 }
 
-function questionClick() {
-    // time penalty if wrong
-    if (this.value !== questions[currentQuestionIndex].answer) {
-        time -= 15;
+function setScore() {
+    localStorage.setItem("highScore", score);
+    localStorage.setItem("highScore", document.getElementById("name").value);
+    getScore();
+}
 
-    // stop timer at 0
-    if (time < 0) {
-        time= 0;
+function getScore() {
+    var quiz
+}
+
+
+function next() {
+    currentQuestion++;
+
+    if (currentQuestion > questions.length-1) {
+        endGame();
+        return;
     }
 
-    // display new time
-    timerEl.textContent = time;
+    var quizContent = "<h2>" + questions[currentQuestion].title + "</h2>"
 
-    feedbackEl.textContent = "Incorrect!";
-    feedbackEl.style.color = "red";
-    feedbackEl.style.fontSize = "400%"
-    } else {
-    feedbackEl.textContent = "Correct!";
-    feedbackEl.style.color = "green";
-    feedbackEl.style.fontSize = "400%";
+    for (var buttonLoop = 0;buttonLoop < questions[currentQuestion].choices.length;buttonLoop++) {
+        var buttonCode = "<button onclick=\"[ANS]\">[CHOICE]</button>";
+        buttonCode = buttonCode.replace("[CHOICE]", questions[currentQuestion].choices[buttonLoop]);
+        if (questions[currentQuestion].choices[buttonLoop] == questions[currentQuestion].answer) {
+            buttonCode = buttonCode.replace("[ANS]", "correct()");
+        }
+        else {
+            buttonCode = buttonCode.replace("[ANS]", "incorrect()");
+        }
+        quizContent += buttonCode
     }
-
-    // right/wrong feedback
-    feedbackEl.setAttribute("class", "feedback");
-    setTimeout(function() {
-        feedbackEl.setAttribute("class", "feedback hide");
-    }, 1000);
-
-    // pull next question
-    currentQuestionIndex++;
-
-    if (currentQuestionIndex === questions.length) {
-        quizEnd();
-    } else {
-        question();
-    }   
+    document.getElementById("").innerHTML = quizContent 
 }
-
-
-function quizEnd() {
-
-    clearInterval(timerId);
-
-    var endQuizEl= document.getElementById("end-quiz");
-    endQuizEl.removeAttribute("class");
-
-    var finalScoreEl = document.getElementById("final-score");
-    finalScoreEl.textcontent = time;
-
-    questionsEl.setAttribute("class", "hide");
-}
-
-function clockTick() {
-    time--;
-    timerEl.textcontent = time;
-
-    if (time <= 0) {
-        quizEnd();
-    }
-}
-
-function saveScores() {
-
-    var initials = initialsEl.value.trim();
-
-    // get saved scores from local storage or create new array if empty
-    if (initials !== "") {
-        var highscores = JSON.parse(window.localStorage.getItem("highscores")) || [];
-
-    var newScore = {
-        score: time,
-        initials: initials
-    };
-
-    highscores.push(newScore);
-    window.localStorage.setItem("highscores", JSON.stringify(highscores));
-
-    window.location.href = "score.html";
-    }
-}
-
-function checkForEnter(event) {
-    if (event.key === "Enter") {
-        saveScores();
-    }
-}
-
-submitBtn.onclick = saveScores;
-
-startBtn.onclick = startQuiz;
-
-initialsEl.onkeyup = checkForEnter;
