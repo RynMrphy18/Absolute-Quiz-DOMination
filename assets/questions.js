@@ -1,18 +1,20 @@
+// main question array
+
 var questions = [
-{
-    title: "Inside which HTML element do we put JavaScript?",
-    choices: ["<js>", "<script>", "<javascript>", "<div>"],
-    answer: "<script"
-},
-{
+    {
     title: "Where is the correct place to insert a JavaScript?",
     choices: ["The body section", "The head section", "Either is okay"],
     answer: "Either is okay"
+    },
+{
+    title: "Inside which HTML element do we put JavaScript?",
+    choices: ["js", "script", "javascript", "div"],
+    answer: "script"
 },
 {
     title: "What is the correct syntax for referring to an external script called 'xxx.js'?",
-    choices: ["<script name='xxx.js'>", "script href='xx.js'>","<script href='xxx.js'>", "<script src='xxx.js'>"],
-    answer: "<script src= 'xxx.js'>"
+    choices: ["script name='xxx.js'", "script href='xx.js'","script href='xxx.js'", "script src='xxx.js'"],
+    answer: "script src= 'xxx.js'"
 },
 {
     title: "How do you write 'You died!' in an alert box?",
@@ -42,7 +44,7 @@ var questions = [
 {
     title: "True or False: JavaScript is the same as Java",
     choices: ["True", "False"],
-    answer: "True"
+    answer: "False"
 },
 {
     title: "Which operator assigns a value to a variable?",
