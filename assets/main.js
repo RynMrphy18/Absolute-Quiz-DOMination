@@ -77,19 +77,51 @@ function startQuiz() {
 function endGame() {
     clearInterval(timer);
 
+    var quizContent = "<h2>Game Over!<h2> Your final score was " + score + "! Great job!</h2><h3>Save your score here!</h3><input type='text' id='name' placeholder = 'First name'><button onclick='setScore()'>Save!</button>";
 
+    document.getElementById("quiz").innerHTML = quizContent;
 }
 
 function setScore() {
-    localStorage.setItem("highScore", score);
-    localStorage.setItem("highScore", document.getElementById("name").value);
+    localStorage.setItem("highscore", score);
+    localStorage.setItem("highscoreName", document.getElementById("name").value);
     getScore();
 }
 
 function getScore() {
-    var quiz
+    var quizContent= "<h2>" + localStorage.getitem("highscoreName") + "'s highscore is:</h2><h1>" + localStorage.getItem("highscore") + "</h1><br> <button onclick='clearScore()'>Clear score!</button><button onclick='resetGame()'>Play again!</button>";
+
+    document.getElementById("quiz").innerHTML = quizContent;
 }
 
+function clearScore() {
+    localStorage.setItem("highscore", "");
+    localStorage.setItem("highscoreName", "");
+
+    resetGame();
+}
+
+function resetGame() {
+    clearInterval(timer);
+    score = 0;
+    currentQuestion = -1;
+    timeleft= 0
+    timer = null;
+
+    document.getElementById("time").innerHTML = time;
+
+    var quizContent = "<h1>JavaScript Quiz! The more questions you get right, the higher your score! Click below to begin. </h1><button onclick='startQuiz()'>Start quiz!</button>"
+
+    document.getElementById("quiz").innerHTML = quizContent;
+}
+
+function correct() {
+
+}
+
+function incorrect(){
+
+}
 
 function next() {
     currentQuestion++;
@@ -112,5 +144,5 @@ function next() {
         }
         quizContent += buttonCode
     }
-    document.getElementById("").innerHTML = quizContent 
+    document.getElementById("quiz").innerHTML = quizContent 
 }
