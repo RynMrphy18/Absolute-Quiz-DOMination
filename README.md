@@ -29,8 +29,8 @@ Created functions setting, pulling and posting the two statistics from local sto
 https://rynmrphy18.github.io/Absolute-Quiz-DOMination/
 
 
-![ScreenShot](chrome-extension://fdpohaocaechififmbbbbbknoalclacl/capture.html?id=5&url=https%3A%2F%2Frynmrphy18.github.io%2FAbsolute-Quiz-DOMination%2Fscore.html)
+![ScreenShot](https://user-images.githubusercontent.com/87506145/131203819-b688f773-dc41-4ef5-b38a-e0ba4f61c3ef.png)
 
-![ScreenShot](chrome-extension://fdpohaocaechififmbbbbbknoalclacl/capture.html?id=3&url=https%3A%2F%2Frynmrphy18.github.io%2FAbsolute-Quiz-DOMination%2F)
+![ScreenShot](https://user-images.githubusercontent.com/87506145/131203821-4b7f13b5-45ec-4371-81d4-e4f5f36680eb.png)
 
-![ScreenShot](chrome-extension://fdpohaocaechififmbbbbbknoalclacl/capture.html?id=4&url=https%3A%2F%2Frynmrphy18.github.io%2FAbsolute-Quiz-DOMination%2F)
+![ScreenShot](https://user-images.githubusercontent.com/87506145/131203825-5e2d63ff-d6cc-4fee-ac31-dcb1f0bced9b.png)
